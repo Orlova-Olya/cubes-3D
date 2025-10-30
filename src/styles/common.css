@@ -1,0 +1,29 @@
+*:not(head) {
+  display: block;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+
+  background-color: rgb(32, 32, 32);
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+}

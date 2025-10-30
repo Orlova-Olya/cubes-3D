@@ -1,0 +1,7 @@
+html {
+  --animation-duration: 10s;
+
+  --white_fake: #f4f6f5;
+  --green: #376b44;
+  --yellow: #eedb6d;
+}
