@@ -6,19 +6,38 @@
     <div class="cubes-container__rotate-panel">
       <label class="cubes-container__rotate-label">
         x=
-        <input v-model="rotate.x" type="number" class="cubes-container__rotate-input" />
+        <input
+          v-model="rotate.x"
+          type="number"
+          class="cubes-container__rotate-input"
+          step="5"
+          @wheel.prevent="handleInputWheel($event, 'x')"
+        />
         °
       </label>
       <label class="cubes-container__rotate-label">
         y=
-        <input v-model="rotate.y" type="number" class="cubes-container__rotate-input" />
+        <input
+          v-model="rotate.y"
+          type="number"
+          class="cubes-container__rotate-input"
+          step="5"
+          @wheel.prevent="handleInputWheel($event, 'y')"
+        />
         °
       </label>
       <label class="cubes-container__rotate-label">
         z=
-        <input v-model="rotate.z" type="number" class="cubes-container__rotate-input" />
+        <input
+          v-model="rotate.z"
+          type="number"
+          class="cubes-container__rotate-input"
+          step="5"
+          @wheel.prevent="handleInputWheel($event, 'z')"
+        />
         °
       </label>
+      <div class="cubes-container__rotate-panel-hint">*в input значение меняется на колёсико</div>
     </div>
     <div
       class="cubes-container__plane"
@@ -113,6 +132,13 @@ export default {
       }
       return styles
     }
+  },
+
+  methods: {
+    handleInputWheel(event, coordinate) {
+      const step = +event.target.step || 1
+      this.rotate[coordinate] = this.rotate[coordinate] + (event.deltaY < 0 ? step : -1 * step)
+    }
   }
 }
 </script>
@@ -131,13 +157,15 @@ export default {
     left: 50%;
 
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 
+    width: 320px;
     padding: 8px 16px;
 
     background-color: rgb(222, 222, 222);
 
     translate: -50%;
-    gap: 20px;
   }
   &__rotate-label {
     display: flex;
@@ -150,6 +178,10 @@ export default {
     width: 50px;
 
     font-size: 16px;
+  }
+  &__rotate-panel-hint {
+    width: 100%;
+    margin-top: 8px;
   }
 
   &__plane {
